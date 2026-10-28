@@ -2,34 +2,34 @@
 
 Task authority before agent actions. Evidence for every intervention.
 
-DecisionGuard is being developed in independently runnable phase folders. The long-term goal is identity-drift detection, explained containment, and verified continuation for autonomous agents. **Only phase one is implemented.**
+DecisionGuard is developed in independently runnable phase folders. The goal is identity-drift detection, explained containment, and verified continuation for autonomous agents. **Phases one and two are implemented; later phases have not started.**
 
-| Phase | Status | What you can run |
-| --- | --- | --- |
-| [Phase one](phase-one/README.md) | Implemented | Typed task authority, synthetic tools, allow/deny decisions, events, receipts and tests |
-| Later phases | Not started | Durable execution, learning, multi-agent containment, integrations, operator console and evaluation |
+| Phase | What you can run |
+| --- | --- |
+| [Phase one](phase-one/README.md) | Original synthetic, in-memory gateway demonstration |
+| [Phase two](phase-two/README.md) | Offline file-backed authority, approvals, revocation, durable execution, receipts and tests |
 
-## Run phase one
+## Start with phase two
 
-Install Python 3.11 or newer, then:
+Python 3.11+, on Linux/macOS or Linux under WSL:
 
 ```sh
 git clone https://github.com/shahmanavamit-lang/DecisionGuard.git
-cd DecisionGuard/phase-one
-python run.py demo
-python -m unittest discover -s tests -v
+cd DecisionGuard/phase-two
+python run.py --help
+python -W error::ResourceWarning -m unittest discover -s tests -v
 ```
 
-On macOS/Linux, use `python3` if `python` is unavailable. On Windows, `py -3` also works. No API key, cloud account, third-party runtime library, or database is needed.
+Use `python3` where necessary. Open `phase-two` in VS Code. No pip installation, external API, API key or cloud account is needed to run the checkout.
 
-Open `phase-one` in VS Code and select a Python 3.11+ interpreter. You can also download the repository ZIP and open that folder.
+The database starts empty. Follow the [file-driven walkthrough](phase-two/README.md#walkthrough-using-your-files) with your own input files. No business records are hardcoded or automatically loaded in phase two. Phase one's original synthetic fixtures remain only in its historical snapshot.
 
-## How phase folders work
+## Phase folders
 
-Each completed phase is published as a self-contained snapshot (`phase-one`, then `phase-two`, and so on). A later phase will include the cumulative runnable project, its own setup instructions, requirements and license; earlier snapshots remain available. Run one phase at a time. Do not combine package folders or install different snapshots into the same virtual environment. Root GitHub Actions checks the supported snapshots.
+Each completed phase is published as a cumulative standalone project. Use the latest phase for current work; previous folders remain runnable for comparison. Run each folder with its own interpreter environment if installing it. Do not merge their package directories. CI checks each phase independently.
 
-## Scope and evidence
+## Current boundary
 
-The demo is deterministic and uses synthetic data. It demonstrates task-scoped enforcement despite a valid demo identity; it does not run an LLM or demonstrate learned drift detection, production authentication, or multi-agent containment yet. Read the [threat model](phase-one/docs/THREAT_MODEL.md) and [phase report](phase-one/docs/PHASE_REPORT.md).
+Phase two trusts the local OS owner and runner. It stores local file snapshots and database-local notes, and never calls a hosted model or remote tool API. It does not yet learn behavioral drift or perform multi-agent containment. Read the [threat model](phase-two/docs/THREAT_MODEL.md) and [phase report](phase-two/docs/PHASE_REPORT.md).
 
-Project code is provided under the [MIT license](LICENSE). Third-party development tools retain their own licenses; see [dependency notes](phase-one/docs/DEPENDENCIES.md).
+Source code is [MIT-licensed](LICENSE). Each standalone phase contains its own license and dependency notes. GitHub is used for source publication and development CI, not as a runtime dependency.
