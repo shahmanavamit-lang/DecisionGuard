@@ -1,0 +1,7 @@
+{
+  "request_id": "example-allowed",
+  "task_id": "procurement-001",
+  "grant_id": "quotation-grant",
+  "operation": "read",
+  "resource_id": "quotation:acme"
+}

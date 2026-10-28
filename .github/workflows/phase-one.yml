@@ -1,0 +1,25 @@
+name: Phase one checks
+on:
+  push:
+    paths: ['phase-one/**', '.github/workflows/phase-one.yml']
+  pull_request:
+    paths: ['phase-one/**', '.github/workflows/phase-one.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Test contracts, policy, effects and CLI
+        working-directory: phase-one
+        run: python -m unittest discover -s tests -v
+      - name: Run the end-to-end demonstration
+        working-directory: phase-one
+        run: python run.py demo

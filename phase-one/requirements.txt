@@ -1,0 +1,2 @@
+# Phase one uses only the Python 3.11+ standard library.
+# No pip packages or API keys are required to run or test the checkout.
