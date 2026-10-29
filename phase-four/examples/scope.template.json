@@ -1,0 +1,18 @@
+{
+  "task_id": "local-review",
+  "description": "Review my imported input",
+  "permissions": [
+    {
+      "operation": "read_file",
+      "resource_id": "input",
+      "resource_version": 1
+    },
+    {
+      "operation": "write_note",
+      "resource_id": "input",
+      "resource_version": 1
+    }
+  ],
+  "max_actions": 10,
+  "max_bytes": 1048576
+}
