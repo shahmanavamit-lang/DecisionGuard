@@ -18,3 +18,4 @@ htmlcov/
 *.db
 *.db-*
 phase-two/local/
+phase-three/local/
