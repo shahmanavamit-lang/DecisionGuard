@@ -1,0 +1,15 @@
+{
+  "steps": [
+    {
+      "kind": "read",
+      "resource_id": "input",
+      "resource_version": 1
+    },
+    {
+      "kind": "summarize",
+      "resource_id": "input",
+      "resource_version": 1,
+      "source": 0
+    }
+  ]
+}

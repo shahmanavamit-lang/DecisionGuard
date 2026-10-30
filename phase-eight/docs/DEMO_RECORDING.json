@@ -1,0 +1,126 @@
+{
+  "description": "Recorded CLI exercise using this release README as input, not a semantic AI demonstration.",
+  "command": "python3 scripts/worker_walkthrough.py --input README.md --workspace local/final-demo",
+  "result": {
+    "mode": "local_deterministic_worker_processes",
+    "normal": {
+      "run_id": "analysis",
+      "context_id": "analyst",
+      "state": "completed",
+      "error": null,
+      "steps": [
+        {
+          "behavior": {
+            "baseline_status": "cold_start",
+            "dataset_sha256": null,
+            "evidence_severity": 0,
+            "hard_policy_reason": "authorized",
+            "hold_required": false,
+            "impact": 2,
+            "limited_training": true,
+            "profile_version": null,
+            "risk_meaning": "engineering triage, not probability of compromise",
+            "risk_priority": 0,
+            "scope_version": 1,
+            "signals": [],
+            "training_trace_count": 0,
+            "transition_probability": null,
+            "uncertainty": "No personal history is inferred; profiles use explicitly approved task traces."
+          },
+          "request_id": "analysis.0",
+          "principal": "analyst",
+          "status": "completed",
+          "reason": "authorized",
+          "scope_version": 1,
+          "receipt": {
+            "request_id": "analysis.0",
+            "operation": "read_file",
+            "resource_id": "input",
+            "resource_version": 1,
+            "byte_count": 12092,
+            "digest": "734ec0483014286ccd21ffe848e06264d657d710122c0b05c65367049ffc38f2",
+            "completed_at": 1793377039
+          }
+        },
+        {
+          "behavior": {
+            "baseline_status": "cold_start",
+            "dataset_sha256": null,
+            "evidence_severity": 0,
+            "hard_policy_reason": "authorized",
+            "hold_required": false,
+            "impact": 2,
+            "limited_training": true,
+            "profile_version": null,
+            "risk_meaning": "engineering triage, not probability of compromise",
+            "risk_priority": 0,
+            "scope_version": 1,
+            "signals": [],
+            "training_trace_count": 0,
+            "transition_probability": null,
+            "uncertainty": "No personal history is inferred; profiles use explicitly approved task traces."
+          },
+          "request_id": "analysis.1",
+          "principal": "analyst",
+          "status": "completed",
+          "reason": "authorized",
+          "scope_version": 1,
+          "receipt": {
+            "request_id": "analysis.1",
+            "operation": "write_note",
+            "resource_id": "input",
+            "resource_version": 1,
+            "byte_count": 184,
+            "digest": "09cce1ffc7c2050d2357f2ce0090ceb953d40dcb4a04dad3a43a113033381e3d",
+            "completed_at": 1793377039
+          }
+        }
+      ],
+      "worker_type": "local-deterministic-text-statistics"
+    },
+    "computed_summary": {
+      "algorithm": "text-statistics-v1",
+      "characters": 12080,
+      "lines": 132,
+      "sha256": "734ec0483014286ccd21ffe848e06264d657d710122c0b05c65367049ffc38f2",
+      "utf8_bytes": 12092,
+      "words": 1626
+    },
+    "unauthorized": {
+      "run_id": "unauthorized",
+      "context_id": "probe",
+      "state": "blocked",
+      "error": null,
+      "steps": [
+        {
+          "behavior": {
+            "baseline_status": "unlabeled",
+            "dataset_sha256": null,
+            "evidence_severity": 3,
+            "hard_policy_reason": "outside_scope",
+            "hold_required": false,
+            "impact": null,
+            "limited_training": true,
+            "profile_version": null,
+            "risk_meaning": "engineering triage, not probability of compromise",
+            "risk_priority": null,
+            "scope_version": 1,
+            "signals": [],
+            "training_trace_count": 0,
+            "transition_probability": null,
+            "uncertainty": "No personal history is inferred; profiles use explicitly approved task traces."
+          },
+          "request_id": "unauthorized.0",
+          "principal": "probe",
+          "status": "denied",
+          "reason": "outside_scope",
+          "scope_version": 1,
+          "receipt": null
+        }
+      ],
+      "worker_type": "local-deterministic-text-statistics"
+    },
+    "receipt_count": 2,
+    "note": "No LLM or semantic prompt-injection detector is involved."
+  }
+}

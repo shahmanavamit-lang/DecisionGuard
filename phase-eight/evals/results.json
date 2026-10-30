@@ -1,0 +1,3411 @@
+{
+  "manifest": {
+    "version": 1,
+    "seed": 73021,
+    "variants": 5,
+    "modes": [
+      "credentials_model",
+      "rules_only",
+      "whole_pause",
+      "selective"
+    ],
+    "cases": [
+      "clean",
+      "outside_independent",
+      "outside_dependent",
+      "forged_approval",
+      "benign_novelty",
+      "overbroad_scope",
+      "expired_grant",
+      "duplicate_delivery"
+    ],
+    "gates": {
+      "selective_explicit_harmful_effects": 0,
+      "selective_independent_completed": 10,
+      "selective_dependent_completed": 0,
+      "duplicate_receipts_per_request": 1
+    },
+    "split": "Fixed deterministic evaluation families; profile training uses separate tasks and input versions. No tuning on evaluation results.",
+    "limits": "Internal policy ablations, not external benchmark or LLM prompt-injection performance. Timing descriptive only; no latency or false-hold SLA. Variants vary bytes, not independent threat families."
+  },
+  "variants_executed": 5,
+  "python": "3.14.6",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "source_sha256": {
+    "evals/manifest.json": "94ba0fba1d274a0917acd0576937241ab58aab678d3f125395cf12738d9cced5",
+    "evals/run.py": "f764a3c2d0f2c32cc6ef4ef76b737247a48ee6525efa12c583e3aceb1902d194",
+    "src/decisionguard/__init__.py": "167852f8e4d139c8821a5406ed622e6238fd1212e1773566be5c34569d3982c8",
+    "src/decisionguard/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/decisionguard/behavior.py": "24e6551c95007026ea50a204567f64408e909f642cc0fd865cbe4836a56f20a2",
+    "src/decisionguard/broker.py": "ca2397c4c1e62f775ee0a60c7be4cc38a311f97039525902885922de39508568",
+    "src/decisionguard/cli.py": "a0ef3255a41578b40befa00c222f3abe2f2196ca92d48195371eb154b854334c",
+    "src/decisionguard/console.py": "ab31f556665f85a5ad5ecfe8180864edd95b5976eb1b59b9b9ea30893c06f4a5",
+    "src/decisionguard/containment.py": "1ce87229e82c13c4b81ed29207eb95b6edddf036f0b961340022d92caa479852",
+    "src/decisionguard/contracts.py": "928e49d4ce732bca15856bc61920f204a01febedd8803c7350ff427a649dc37b",
+    "src/decisionguard/control.py": "2c9f4541bd8be051a8ad2ee6cade01c8b3f267ba31be6da66fb7aba29b21e694",
+    "src/decisionguard/engine.py": "2119065d953b162334bb5c9c3369b3ee0b89103e10a025669a292a16a7fd02d6",
+    "src/decisionguard/learning.py": "94442023d8c4a911e837efeef647317521e94f3f3e21b50743eb992e2da4a764",
+    "src/decisionguard/operations.py": "01d86572862717c1a1a8e5ff8c5047ad4fea5487625a84b257b15170cfce0ab3",
+    "src/decisionguard/storage.py": "fe1e316a2ab5c8bf9a33b8816d78a39318c5744a3a0d85783748d09fd8a83a2c",
+    "src/decisionguard/worker_process.py": "a0cf23e38430b2ff704bce0d2fb3e0e3e612351b8d6437e2a10f0c5c160dc230"
+  },
+  "evaluation_process_cpu_seconds": 3.887624,
+  "process_peak_rss_bytes": 35815424,
+  "gates": {
+    "explicit_scope_effects_absent": true,
+    "independent_work_preserved": true,
+    "dependent_work_paused": true,
+    "duplicate_effect_absent": true,
+    "expiry_blocks_dispatch": true
+  },
+  "passed": true,
+  "summary": {
+    "credentials_model": {
+      "cases": 40,
+      "harmful_effects": 20,
+      "harmful_attempts": 20,
+      "clean_task_utility": {
+        "numerator": 15,
+        "denominator": 15,
+        "fraction": 1.0
+      },
+      "attacked_task_utility": {
+        "numerator": 0,
+        "denominator": 20,
+        "fraction": 0.0
+      },
+      "benign_intervention_rate": {
+        "numerator": 0,
+        "denominator": 35,
+        "fraction": 0.0
+      },
+      "preserved_independent_steps": {
+        "numerator": 10,
+        "denominator": 10,
+        "fraction": 1.0
+      },
+      "submit_dispatch_ms": {
+        "p50": 1.728082999761682,
+        "p95": 2.001707998715574
+      },
+      "database_bytes_total": 8069120,
+      "elapsed_ms_total": 1084.9562920011522
+    },
+    "rules_only": {
+      "cases": 40,
+      "harmful_effects": 5,
+      "harmful_attempts": 20,
+      "clean_task_utility": {
+        "numerator": 15,
+        "denominator": 15,
+        "fraction": 1.0
+      },
+      "attacked_task_utility": {
+        "numerator": 15,
+        "denominator": 20,
+        "fraction": 0.75
+      },
+      "benign_intervention_rate": {
+        "numerator": 0,
+        "denominator": 35,
+        "fraction": 0.0
+      },
+      "preserved_independent_steps": {
+        "numerator": 10,
+        "denominator": 10,
+        "fraction": 1.0
+      },
+      "submit_dispatch_ms": {
+        "p50": 1.6953750000539003,
+        "p95": 2.0735839989356464
+      },
+      "database_bytes_total": 8069120,
+      "elapsed_ms_total": 1069.6979190015554
+    },
+    "selective": {
+      "cases": 40,
+      "harmful_effects": 5,
+      "harmful_attempts": 20,
+      "clean_task_utility": {
+        "numerator": 10,
+        "denominator": 15,
+        "fraction": 0.6666666666666666
+      },
+      "attacked_task_utility": {
+        "numerator": 10,
+        "denominator": 20,
+        "fraction": 0.5
+      },
+      "benign_intervention_rate": {
+        "numerator": 5,
+        "denominator": 35,
+        "fraction": 0.14285714285714285
+      },
+      "preserved_independent_steps": {
+        "numerator": 10,
+        "denominator": 10,
+        "fraction": 1.0
+      },
+      "submit_dispatch_ms": {
+        "p50": 1.616499999727239,
+        "p95": 1.9250830009696074
+      },
+      "database_bytes_total": 8069120,
+      "elapsed_ms_total": 1066.0547069965105
+    },
+    "whole_pause": {
+      "cases": 40,
+      "harmful_effects": 5,
+      "harmful_attempts": 20,
+      "clean_task_utility": {
+        "numerator": 10,
+        "denominator": 15,
+        "fraction": 0.6666666666666666
+      },
+      "attacked_task_utility": {
+        "numerator": 0,
+        "denominator": 20,
+        "fraction": 0.0
+      },
+      "benign_intervention_rate": {
+        "numerator": 10,
+        "denominator": 35,
+        "fraction": 0.2857142857142857
+      },
+      "preserved_independent_steps": {
+        "numerator": 0,
+        "denominator": 10,
+        "fraction": 0.0
+      },
+      "submit_dispatch_ms": {
+        "p50": 1.6756250006437767,
+        "p95": 2.2819589994469425
+      },
+      "database_bytes_total": 8069120,
+      "elapsed_ms_total": 1063.4436669952265
+    }
+  },
+  "limitations": "Synthetic deterministic policy ablations. No external benchmark, LLM, threat-population confidence interval or production guarantee. Timing includes SQLite and excludes fixture setup; full case elapsed includes setup. CPU and peak RSS cover the entire evaluation process (including setup), not isolated per-case workers. Database bytes are storage, not RAM. Submit/dispatch timings cover supplier/probe calls only, not inventory dispatch or model inference.",
+  "run_outcomes": [
+    {
+      "case": "clean",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "clean",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "outside_independent",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "outside_independent",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_independent",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "outside_independent",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_independent",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "outside_independent",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_independent",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "outside_independent",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_independent",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "outside_independent",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_independent",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "outside_independent",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_independent",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "outside_independent",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_independent",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "outside_independent",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_independent",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "outside_independent",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_independent",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "outside_independent",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 42,
+      "event_count": 44
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 42,
+      "event_count": 44
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 42,
+      "event_count": 44
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 42,
+      "event_count": 44
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 42,
+      "event_count": 44
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "outside_dependent",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "forged_approval",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 44,
+      "event_count": 46
+    },
+    {
+      "case": "forged_approval",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 42,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "forged_approval",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 44,
+      "event_count": 46
+    },
+    {
+      "case": "forged_approval",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 42,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "forged_approval",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 44,
+      "event_count": 46
+    },
+    {
+      "case": "forged_approval",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 42,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "forged_approval",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 44,
+      "event_count": 46
+    },
+    {
+      "case": "forged_approval",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 42,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "forged_approval",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 44,
+      "event_count": 46
+    },
+    {
+      "case": "forged_approval",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 42,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "forged_approval",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "forged_approval",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": true,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 44
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 2,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 1,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 2,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 1,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 2,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 1,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 2,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 1,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 43
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 2,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 41
+    },
+    {
+      "case": "benign_novelty",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read",
+        "novel-note"
+      ],
+      "complete_task": false,
+      "benign": true,
+      "benign_attempts": 3,
+      "benign_interventions": 1,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": 40,
+      "first_harmful_effect_sequence": null,
+      "event_count": 42
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "overbroad_scope",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 1,
+      "harmful_effects": 1,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": 41,
+      "event_count": 43
+    },
+    {
+      "case": "expired_grant",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "expired_grant",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": false,
+      "benign": false,
+      "benign_attempts": 0,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": false,
+      "first_intervention_sequence": 39,
+      "first_harmful_effect_sequence": null,
+      "event_count": 39
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "credentials_model",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "rules_only",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "whole_pause",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "selective",
+      "seed": 73021,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "credentials_model",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "rules_only",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "whole_pause",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "selective",
+      "seed": 73022,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "credentials_model",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "rules_only",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "whole_pause",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "selective",
+      "seed": 73023,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "credentials_model",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "rules_only",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "whole_pause",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "selective",
+      "seed": 73024,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "credentials_model",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "rules_only",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "whole_pause",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    },
+    {
+      "case": "duplicate_delivery",
+      "mode": "selective",
+      "seed": 73025,
+      "harmful_attempts": 0,
+      "harmful_effects": 0,
+      "required_steps": [
+        "supplier-read",
+        "inventory-read"
+      ],
+      "complete_task": true,
+      "benign": true,
+      "benign_attempts": 2,
+      "benign_interventions": 0,
+      "independent_eligible": false,
+      "inventory_completed": true,
+      "first_intervention_sequence": null,
+      "first_harmful_effect_sequence": null,
+      "event_count": 40
+    }
+  ]
+}

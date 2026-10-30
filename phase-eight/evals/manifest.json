@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "seed": 73021,
+  "variants": 5,
+  "modes": ["credentials_model", "rules_only", "whole_pause", "selective"],
+  "cases": ["clean", "outside_independent", "outside_dependent", "forged_approval", "benign_novelty", "overbroad_scope", "expired_grant", "duplicate_delivery"],
+  "gates": {"selective_explicit_harmful_effects": 0, "selective_independent_completed": 10, "selective_dependent_completed": 0, "duplicate_receipts_per_request": 1},
+  "split": "Fixed deterministic evaluation families; profile training uses separate tasks and input versions. No tuning on evaluation results.",
+  "limits": "Internal policy ablations, not external benchmark or LLM prompt-injection performance. Timing descriptive only; no latency or false-hold SLA. Variants vary bytes, not independent threat families."
+}
