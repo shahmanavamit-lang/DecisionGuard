@@ -1,4 +1,4 @@
-# Phase-six threat model
+# Phase-seven threat model
 
 ## Protected property
 
@@ -34,3 +34,8 @@ Phase-five addendum: fixed worker process integration, broker authority and run 
 ## Phase-six addendum
 
 Backend owner controls and the optional console are described in [CONSOLE.md](CONSOLE.md) and [ADR 006](ADR-006-owner-controls-and-optional-console.md). CLI use remains primary. This snapshot retains schema 4 and fixes reviewed-hold continuation previews; it does not add general hostile-code isolation or production assurance.
+
+
+## Phase-seven integrity boundary
+
+Stored handoffs require a completed source action, matching request/receipt identity and strictly typed output metadata. Read payload digests, byte counts and versions must match receipts. Missing or malformed provenance triggers conservative containment. This checks consistency, not authenticity against an owner able to rewrite all database evidence. See REVIEW_PHASES_1_TO_7.md for regression checks.

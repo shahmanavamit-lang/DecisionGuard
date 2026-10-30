@@ -1,7 +1,7 @@
 """Trusted-runner dependency capture and conservative quarantine."""
 import json
 import hashlib
-from .contracts import Action, Scope, Permission, canonical, exact, identifier, integer, require
+from .contracts import Action, Scope, Permission, GuardError, canonical, exact, identifier, integer, require
 
 
 class Containment:
@@ -166,25 +166,26 @@ class Containment:
             if source['quarantined']:
                 return self._quarantine(db,context_id,'attempted_quarantined_consumption')
             # Consumption transfers data, not authority: recipient must independently be authorized for the source resource.
-            original=db.execute('SELECT body FROM actions WHERE request_id=?',(output_id,)).fetchone()
+            original=db.execute('SELECT body,status FROM actions WHERE request_id=?',(output_id,)).fetchone()
             grant=db.execute('SELECT * FROM grants WHERE grant_id=?',(context['grant_id'],)).fetchone()
             payload=db.execute('SELECT body FROM output_data WHERE node_id=?',(node,)).fetchone()
             receipt=db.execute('SELECT * FROM receipts WHERE request_id=?',(output_id,)).fetchone()
             if original is None or payload is None or receipt is None:
                 return self._quarantine(db,context_id,'incomplete_output_provenance',True)
-            origin=Action.from_dict(json.loads(original[0]))
             try:
+                origin=Action.from_dict(json.loads(original['body']))
                 delivered=json.loads(payload[0])
                 if origin.operation=='read_file':
                     valid=(isinstance(delivered,dict) and set(delivered)=={'content','resource_version'}
                            and isinstance(delivered['content'],str)
+                           and type(delivered['resource_version']) is int
                            and delivered['resource_version']==origin.resource_version
                            and hashlib.sha256(delivered['content'].encode('utf-8')).hexdigest()==receipt['digest']
                            and len(delivered['content'].encode('utf-8'))==receipt['byte_count'])
                 else:
                     valid=delivered=={'note_id':output_id,'sha256':receipt['digest']}
-                valid=valid and receipt['operation']==origin.operation and receipt['resource_id']==origin.resource_id and receipt['resource_version']==origin.resource_version
-            except (ValueError,TypeError,UnicodeError,RecursionError):
+                valid=valid and original['status']=='completed' and origin.request_id==output_id and receipt['operation']==origin.operation and receipt['resource_id']==origin.resource_id and receipt['resource_version']==origin.resource_version
+            except (GuardError,ValueError,TypeError,UnicodeError,RecursionError):
                 valid=False
             if not valid:
                 return self._quarantine(db,context_id,'output_integrity_failure',True)

@@ -23,7 +23,7 @@ Harmful effect = actual `probe` restricted-read receipt in a scenario whose eval
 
 Independent-work denominator is the independent violation and forged-approval cases, not the dependent case or all steps. Benign interventions count held/denied/cancelled required actions among clean/novelty/duplicate families. They are broader than behavior false holds alone. Duplicate dispatch is checked by one unique receipt, not by one HTTP response. Training receipts are excluded from evaluation effect counts.
 
-Event-sequence positions describe first intervention and harmful completion; they are within the local scenario ledger, include setup, and are not elapsed detection latency. Submit/dispatch p50/p95 use nearest-rank quantiles on timed supplier/probe calls. Inventory dispatch is not included in those timing samples. Full-case elapsed includes fixture/training setup. Process CPU and peak RSS cover the entire harness process; they are not per-worker isolated measurements. Database sizes are storage. Model calls and tokens are zero. Owner-review burden is represented by benign interventions; human review time is not measured.
+Submission-time denials count as interventions alongside dispatch denials, holds and containment. Event-sequence positions describe first intervention and harmful completion; they are within the local scenario ledger, include setup, and are not elapsed detection latency. Submit/dispatch p50/p95 use nearest-rank quantiles on timed supplier/probe calls. Inventory dispatch is not included in those timing samples. Full-case elapsed includes fixture/training setup. Process CPU and peak RSS cover the entire harness process; they are not per-worker isolated measurements. Database sizes are storage. Model calls and tokens are zero. Owner-review burden is represented by benign interventions; human review time is not measured.
 
 ## Gates established before execution
 
@@ -38,3 +38,6 @@ The published run meets these bounded gates. Selective preserved 10/10 eligible 
 ## Hardening found in this phase
 
 Previously, `consume` checked scope/graph authority but could deliver a modified `output_data` body without checking the stored receipt. Phase seven verifies read content digest, byte count, resource version and receipt identity; note output metadata must match its receipt. Missing body/receipt/proposal or corrupt payload causes conservative task-wide containment and no delivery/budget charge. Regression tests inject missing, malformed, digest-mismatched and receipt-mismatched data. This detects inconsistency; an owner who can rewrite both payload and receipt remains trusted. No tamper-proof ledger claim.
+
+
+Maintenance review: manifest validation rejects missing, duplicate or unknown modes/families, malformed thresholds and invalid seeds/counts before creating output. Every declared gate is used, including the dependent-work threshold. Handoffs also reject boolean resource versions, inconsistent source completion state and malformed source proposals. The published results were regenerated with these fixes.

@@ -57,3 +57,35 @@ class EvaluationTests(Environment):
     def test_output_version_and_receipt_mismatch_fail_closed(self):
         self.prepare_delivery();self.sql("UPDATE receipts SET resource_version=99 WHERE request_id='req'")
         self.assertEqual(self.engine.consume('receiver','req')['reason'],'output_integrity_failure')
+
+    def assert_bad_delivery_contained(self):
+        before=self.engine.inspect()['tasks'][0]['used_actions']
+        result=self.engine.consume('receiver','req')
+        self.assertNotIn('output',result)
+        self.assertEqual(result['reason'],'output_integrity_failure')
+        self.assertEqual(self.engine.inspect()['tasks'][0]['used_actions'],before)
+        self.assertTrue(all(c['quarantined'] for c in self.engine.graph()['contexts']))
+
+    def test_corrupt_source_proposal_contains_instead_of_crashing(self):
+        self.prepare_delivery();self.sql("UPDATE actions SET body='{' WHERE request_id='req'")
+        self.assert_bad_delivery_contained()
+
+    def test_uncommitted_source_status_cannot_supply_output(self):
+        self.prepare_delivery();self.sql("UPDATE actions SET status='queued' WHERE request_id='req'")
+        self.assert_bad_delivery_contained()
+
+    def test_boolean_output_version_is_not_integer_version(self):
+        self.prepare_delivery()
+        self.sql("UPDATE output_data SET body=? WHERE node_id='o:req'",(json.dumps({'content':self.content,'resource_version':True}),))
+        self.assert_bad_delivery_contained()
+
+    def test_rules_only_denial_has_intervention_sequence(self):
+        row=evaluation.case_run(self.root/'rules','outside_independent','rules_only',123)
+        self.assertIsNotNone(row['first_intervention_sequence'])
+        self.assertIsNone(row['first_harmful_effect_sequence'])
+
+    def test_manifest_requires_complete_known_matrix(self):
+        manifest=json.loads((ROOT/'evals/manifest.json').read_text())
+        for field,value in [('modes',[]),('cases',['unknown']),('cases',['clean']*8),('variants',True)]:
+            with self.subTest(field=field,value=value),self.assertRaises(ValueError):
+                evaluation.validate_manifest({**manifest,field:value})

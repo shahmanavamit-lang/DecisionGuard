@@ -33,14 +33,14 @@
   "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
   "source_sha256": {
     "evals/manifest.json": "94ba0fba1d274a0917acd0576937241ab58aab678d3f125395cf12738d9cced5",
-    "evals/run.py": "e497ac79e75c8bb4b60939beb4a01f30c00f150c261210a3f388fd7eec0fed16",
+    "evals/run.py": "f764a3c2d0f2c32cc6ef4ef76b737247a48ee6525efa12c583e3aceb1902d194",
     "src/decisionguard/__init__.py": "29ba8736ded4ac238bda4aa6fe964224621ce8300f4302234be7b58983760403",
     "src/decisionguard/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
     "src/decisionguard/behavior.py": "24e6551c95007026ea50a204567f64408e909f642cc0fd865cbe4836a56f20a2",
     "src/decisionguard/broker.py": "ca2397c4c1e62f775ee0a60c7be4cc38a311f97039525902885922de39508568",
     "src/decisionguard/cli.py": "a0ef3255a41578b40befa00c222f3abe2f2196ca92d48195371eb154b854334c",
     "src/decisionguard/console.py": "ab31f556665f85a5ad5ecfe8180864edd95b5976eb1b59b9b9ea30893c06f4a5",
-    "src/decisionguard/containment.py": "17054a67e02b581fbab74cef29718a35522a5990b4da1db4cc347c538ed48a72",
+    "src/decisionguard/containment.py": "1ce87229e82c13c4b81ed29207eb95b6edddf036f0b961340022d92caa479852",
     "src/decisionguard/contracts.py": "928e49d4ce732bca15856bc61920f204a01febedd8803c7350ff427a649dc37b",
     "src/decisionguard/control.py": "2c9f4541bd8be051a8ad2ee6cade01c8b3f267ba31be6da66fb7aba29b21e694",
     "src/decisionguard/engine.py": "2119065d953b162334bb5c9c3369b3ee0b89103e10a025669a292a16a7fd02d6",
@@ -48,8 +48,8 @@
     "src/decisionguard/storage.py": "fe1e316a2ab5c8bf9a33b8816d78a39318c5744a3a0d85783748d09fd8a83a2c",
     "src/decisionguard/worker_process.py": "a0cf23e38430b2ff704bce0d2fb3e0e3e612351b8d6437e2a10f0c5c160dc230"
   },
-  "evaluation_process_cpu_seconds": 3.52096,
-  "process_peak_rss_bytes": 35422208,
+  "evaluation_process_cpu_seconds": 3.305736,
+  "process_peak_rss_bytes": 35618816,
   "gates": {
     "explicit_scope_effects_absent": true,
     "independent_work_preserved": true,
@@ -84,11 +84,11 @@
         "fraction": 1.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.5739589998702286,
-        "p95": 1.8300410001756973
+        "p50": 1.5081669998835423,
+        "p95": 1.6808330001367722
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 1021.7547070024011
+      "elapsed_ms_total": 941.5882929970394
     },
     "rules_only": {
       "cases": 40,
@@ -115,11 +115,11 @@
         "fraction": 1.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.5045829995870008,
-        "p95": 1.7787500000849832
+        "p50": 1.4796669993302203,
+        "p95": 1.7085420004150365
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 977.7009979998184
+      "elapsed_ms_total": 924.1836199989848
     },
     "selective": {
       "cases": 40,
@@ -146,11 +146,11 @@
         "fraction": 1.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.4707919999636943,
-        "p95": 1.7011250001814915
+        "p50": 1.4404999992621015,
+        "p95": 1.6894999998839921
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 961.4709999978004
+      "elapsed_ms_total": 910.3887120036234
     },
     "whole_pause": {
       "cases": 40,
@@ -177,11 +177,11 @@
         "fraction": 0.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.5097080004125019,
-        "p95": 2.036249999946449
+        "p50": 1.471999999921536,
+        "p95": 2.0680830002675066
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 952.854789002231
+      "elapsed_ms_total": 916.93312300049
     }
   },
   "limitations": "Synthetic deterministic policy ablations. No external benchmark, LLM, threat-population confidence interval or production guarantee. Timing includes SQLite and excludes fixture setup; full case elapsed includes setup. CPU and peak RSS cover the entire evaluation process (including setup), not isolated per-case workers. Database bytes are storage, not RAM. Submit/dispatch timings cover supplier/probe calls only, not inventory dispatch or model inference.",
@@ -622,7 +622,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 39,
       "first_harmful_effect_sequence": null,
       "event_count": 41
     },
@@ -702,7 +702,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 39,
       "first_harmful_effect_sequence": null,
       "event_count": 41
     },
@@ -782,7 +782,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 39,
       "first_harmful_effect_sequence": null,
       "event_count": 41
     },
@@ -862,7 +862,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 39,
       "first_harmful_effect_sequence": null,
       "event_count": 41
     },
@@ -942,7 +942,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 39,
       "first_harmful_effect_sequence": null,
       "event_count": 41
     },
@@ -1022,7 +1022,7 @@
       "benign_interventions": 0,
       "independent_eligible": false,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 40,
       "first_harmful_effect_sequence": null,
       "event_count": 42
     },
@@ -1102,7 +1102,7 @@
       "benign_interventions": 0,
       "independent_eligible": false,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 40,
       "first_harmful_effect_sequence": null,
       "event_count": 42
     },
@@ -1182,7 +1182,7 @@
       "benign_interventions": 0,
       "independent_eligible": false,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 40,
       "first_harmful_effect_sequence": null,
       "event_count": 42
     },
@@ -1262,7 +1262,7 @@
       "benign_interventions": 0,
       "independent_eligible": false,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 40,
       "first_harmful_effect_sequence": null,
       "event_count": 42
     },
@@ -1342,7 +1342,7 @@
       "benign_interventions": 0,
       "independent_eligible": false,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 40,
       "first_harmful_effect_sequence": null,
       "event_count": 42
     },
@@ -1422,7 +1422,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 42,
       "first_harmful_effect_sequence": null,
       "event_count": 44
     },
@@ -1502,7 +1502,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 42,
       "first_harmful_effect_sequence": null,
       "event_count": 44
     },
@@ -1582,7 +1582,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 42,
       "first_harmful_effect_sequence": null,
       "event_count": 44
     },
@@ -1662,7 +1662,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 42,
       "first_harmful_effect_sequence": null,
       "event_count": 44
     },
@@ -1742,7 +1742,7 @@
       "benign_interventions": 0,
       "independent_eligible": true,
       "inventory_completed": true,
-      "first_intervention_sequence": null,
+      "first_intervention_sequence": 42,
       "first_harmful_effect_sequence": null,
       "event_count": 44
     },
