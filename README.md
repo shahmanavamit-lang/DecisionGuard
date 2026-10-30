@@ -2,7 +2,7 @@
 
 Task authority before agent actions. Evidence for every intervention.
 
-DecisionGuard aims to detect departures from authorized agent tasks, explain decisions, contain affected work, and check whether independent work can continue. **Phases one through six are implemented in cumulative standalone folders.** Evaluation and release work remain; this is not a production-readiness claim.
+DecisionGuard aims to detect departures from authorized agent tasks, explain decisions, contain affected work, and check whether independent work can continue. **Phases one through seven are implemented in cumulative standalone folders.** Evaluation and release work remain; this is not a production-readiness claim.
 
 | Phase | What you can run |
 | --- | --- |
@@ -13,13 +13,15 @@ DecisionGuard aims to detect departures from authorized agent tasks, explain dec
 | [Phase five](phase-five/README.md) | Fixed local worker processes, brokered tools and bounded execution |
 | [Phase six](phase-six/README.md) | Backend owner controls, investigation state, review-preview correction, and optional custom console |
 
-## Continue with phase six
+| [Phase seven](phase-seven/README.md) | Reproducible backend evaluation, honest comparative reports and output-integrity hardening |
+
+## Continue with phase seven
 
 If already cloned, update from your repository directory:
 
 ```sh
 git pull origin main
-cd phase-six
+cd phase-seven
 python3 run.py --help
 python3 -W error::ResourceWarning -m unittest discover -s tests -v
 ```
@@ -28,7 +30,7 @@ For a new clone:
 
 ```sh
 git clone https://github.com/shahmanavamit-lang/DecisionGuard.git
-cd DecisionGuard/phase-six
+cd DecisionGuard/phase-seven
 ```
 
 Python 3.11+ on Linux/macOS or Linux under WSL. No runtime package installation, external API, API key, or cloud account is required. Follow the [file-driven walkthrough](phase-six/README.md#start) with your own input. The database starts empty; synthetic fixtures are only in historical phase one and explicitly labeled tests/exercises.
@@ -41,6 +43,6 @@ Each folder is a cumulative project. Use the latest phase for current work; do n
 
 The trusted local owner controls authority. Tools read imported file snapshots and write database-local notes. Statistical behavior evidence does not establish broad detector accuracy. Managed lineage supports containment; dispatch always checks current authority and dependencies. Workers are deterministic text processors, not LLMs, and their restrictions are not a general hostile-code sandbox. The optional web console is local-owner tooling, not a public multi-user deployment.
 
-[Review of phases 1–5](phase-six/docs/REVIEW_PHASES_1_TO_5.md) · [Phase-six report](phase-six/docs/PHASE_REPORT.md) · [Threat model](phase-six/docs/THREAT_MODEL.md) · [MIT license](LICENSE)
+[Review of phases 1–5](phase-six/docs/REVIEW_PHASES_1_TO_5.md) · [Phase-seven report](phase-seven/docs/PHASE_REPORT.md) · [Threat model](phase-six/docs/THREAT_MODEL.md) · [MIT license](LICENSE)
 
 GitHub is used for source publication and development CI, not as an application runtime dependency.
