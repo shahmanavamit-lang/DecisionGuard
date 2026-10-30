@@ -1,0 +1,25 @@
+name: Phase six offline checks
+on:
+  push:
+    paths: ['phase-six/**', '.github/workflows/phase-six.yml']
+  pull_request:
+    paths: ['phase-six/**', '.github/workflows/phase-six.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Backend, worker, CLI and loopback HTTP checks
+        working-directory: phase-six
+        run: python -W error::ResourceWarning -m unittest discover -s tests -v
+      - name: Optional console JavaScript syntax
+        working-directory: phase-six
+        run: node --check src/decisionguard/web/app.js

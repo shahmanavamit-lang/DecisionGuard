@@ -2,40 +2,45 @@
 
 Task authority before agent actions. Evidence for every intervention.
 
-DecisionGuard is developed in independently runnable phase folders. The goal is identity-drift detection, explained containment, and verified continuation for autonomous agents. **Phases one through five are implemented; later phases have not started.**
+DecisionGuard aims to detect departures from authorized agent tasks, explain decisions, contain affected work, and check whether independent work can continue. **Phases one through six are implemented in cumulative standalone folders.** Evaluation and release work remain; this is not a production-readiness claim.
 
 | Phase | What you can run |
 | --- | --- |
-| [Phase one](phase-one/README.md) | Original synthetic, in-memory gateway demonstration |
-| [Phase two](phase-two/README.md) | Offline file-backed authority, approvals, revocation, durable execution, receipts and tests |
-
-| [Phase three](phase-three/README.md) | Local learned profiles, evidence, risk triage and owner-reviewed holds |
-
+| [Phase one](phase-one/README.md) | Original synthetic in-memory gateway |
+| [Phase two](phase-two/README.md) | Local authority, approvals, revocation, durable execution and receipts |
+| [Phase three](phase-three/README.md) | Vetted statistical profiles, triage evidence and reviewed holds |
 | [Phase four](phase-four/README.md) | Managed dependencies, containment, delegation and checked continuation |
+| [Phase five](phase-five/README.md) | Fixed local worker processes, brokered tools and bounded execution |
+| [Phase six](phase-six/README.md) | Backend owner controls, investigation state, review-preview correction, and optional custom console |
 
-| [Phase five](phase-five/README.md) | Offline worker processes, brokered tools and bounded execution |
+## Continue with phase six
 
-## Start with phase five
+If already cloned, update from your repository directory:
 
-Python 3.11+, on Linux/macOS or Linux under WSL:
+```sh
+git pull origin main
+cd phase-six
+python3 run.py --help
+python3 -W error::ResourceWarning -m unittest discover -s tests -v
+```
+
+For a new clone:
 
 ```sh
 git clone https://github.com/shahmanavamit-lang/DecisionGuard.git
-cd DecisionGuard/phase-five
-python run.py --help
-python -W error::ResourceWarning -m unittest discover -s tests -v
+cd DecisionGuard/phase-six
 ```
 
-Use `python3` where necessary. Open `phase-five` in VS Code. No pip installation, external API, API key or cloud account is needed to run the checkout.
+Python 3.11+ on Linux/macOS or Linux under WSL. No runtime package installation, external API, API key, or cloud account is required. Follow the [file-driven walkthrough](phase-six/README.md#start) with your own input. The database starts empty; synthetic fixtures are only in historical phase one and explicitly labeled tests/exercises.
 
-The database starts empty. Follow the [file-driven walkthrough](phase-five/README.md#start) with your own input files. No business records are hardcoded or automatically loaded in phase two. Phase one's original synthetic fixtures remain only in its historical snapshot.
+**Backend/CLI development remains primary.** Phase six's custom HTML/CSS/JavaScript console is saved for later use; no Streamlit or Node runtime is used. It opens only when you explicitly run `console` and is not required for subsequent development.
 
-## Phase folders
-
-Each completed phase is published as a cumulative standalone project. Use the latest phase for current work; previous folders remain runnable for comparison. Run each folder with its own interpreter environment if installing it. Do not merge their package directories. CI checks each phase independently.
+Each folder is a cumulative project. Use the latest phase for current work; do not combine their source directories. Earlier folders remain unchanged for comparison, and CI checks phases independently. Schema 4 stores from phase five are compatible with phase six; no database is automatically copied or migrated.
 
 ## Current boundary
 
-Phase two trusts the local OS owner and runner. It stores local file snapshots and database-local notes, and never calls a hosted model or remote tool API. Phase three learns local patterns; phase four adds containment for explicitly managed workflows. Phase five runs a fixed local worker in a separate restricted process; it is not a general hostile-code sandbox. Read the [threat model](phase-five/docs/THREAT_MODEL.md) and [phase report](phase-five/docs/PHASE_REPORT.md).
+The trusted local owner controls authority. Tools read imported file snapshots and write database-local notes. Statistical behavior evidence does not establish broad detector accuracy. Managed lineage supports containment; dispatch always checks current authority and dependencies. Workers are deterministic text processors, not LLMs, and their restrictions are not a general hostile-code sandbox. The optional web console is local-owner tooling, not a public multi-user deployment.
 
-Source code is [MIT-licensed](LICENSE). Each standalone phase contains its own license and dependency notes. GitHub is used for source publication and development CI, not as a runtime dependency.
+[Review of phases 1–5](phase-six/docs/REVIEW_PHASES_1_TO_5.md) · [Phase-six report](phase-six/docs/PHASE_REPORT.md) · [Threat model](phase-six/docs/THREAT_MODEL.md) · [MIT license](LICENSE)
+
+GitHub is used for source publication and development CI, not as an application runtime dependency.

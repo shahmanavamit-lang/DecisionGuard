@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "decisionguard-phase-six"
+version = "0.6.0"
+description = "Offline durable authority and atomic local execution for agents"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+readme = "README.md"
+dependencies = []
+
+[project.scripts]
+decisionguard = "decisionguard.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+decisionguard = ["web/*.html", "web/*.css", "web/*.js"]
