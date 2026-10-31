@@ -1,6 +1,14 @@
-# Optional local operator console
+# Browser interface: normal application startup
 
-The Python backend remains authoritative. The web adapter is an opt-in owner tool; the CLI, workers, and learning/containment workflows do not require it.
+Run `python3 start.py` from the repository root or phase-eight. The launcher initializes an empty store if needed, opens the browser, and prints a one-use access code. The UI is an integral part of the project; advanced CLI workflows remain available for administration and testing.
+
+Start here guides the owner through selecting a UTF-8 file (1–200,000 bytes), reviewing two exact permissions and a byte budget, explicitly approving, and explicitly running. The adapter calls existing import/label/approve/manage operations. Execution uses the existing fresh-context controller and broker. No policy engine, behavior model, containment rule, receipt logic, worker implementation or schema is replaced. Setup is not one transaction: partial failures may leave an imported resource or approval. No worker grant exists until an explicit start. Reused setup/run IDs are rejected; lost responses must be reconciled, never automatically retried.
+
+Results uses ordinary status words and shows text-statistics previews from completed saved notes. Technical records are available in disclosures. Advanced controls retain permission JSON, custom worker plans, comparisons, owner review and containment. Importing is a snapshot; original files are untouched. The guided path is intentionally narrow. Larger imports (up to the existing 1 MiB engine limit), resource labeling and behavior training remain advanced CLI operations.
+
+## Interface architecture and boundary
+
+The Python backend remains authoritative. The browser interface is the normal application entry point. Advanced CLI workflows remain available for administration and testing.
 
 ## Design and entry points
 
@@ -8,7 +16,7 @@ The Python backend remains authoritative. The web adapter is an opt-in owner too
 
 Read endpoints: `/api/session`, `/api/snapshot`, `/api/events?before=SEQUENCE`, `/api/graph?task=ID`, `/api/action?id=ID`. Only static assets and the login route are accessible before authentication. Action details may contain input or note content and are owner-only forensic access, never worker endpoints.
 
-Owner POST operations under `/api/admin/`: `approve`, `start`, `review`, `dispatch`, `continuation`, `contain`, `stop`. Exact payload fields are validated by `control.py`. POST responses can represent a denied/held/blocked outcome even when HTTP itself succeeded; inspect the returned state. There is no arbitrary command, file path, SQL, plugin or external tool endpoint.
+Owner POST operations under `/api/admin/`: `prepare`, `approve`, `start`, `review`, `dispatch`, `continuation`, `contain`, `stop`. Exact payload fields are validated by `control.py` and the narrow `onboarding.py` adapter. POST responses can represent a denied/held/blocked outcome even when HTTP itself succeeded; inspect the returned state. There is no arbitrary command, file path, SQL, plugin or external tool endpoint.
 
 ## Local owner boundary
 

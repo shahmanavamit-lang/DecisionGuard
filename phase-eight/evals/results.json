@@ -38,19 +38,21 @@
     "src/decisionguard/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
     "src/decisionguard/behavior.py": "24e6551c95007026ea50a204567f64408e909f642cc0fd865cbe4836a56f20a2",
     "src/decisionguard/broker.py": "ca2397c4c1e62f775ee0a60c7be4cc38a311f97039525902885922de39508568",
-    "src/decisionguard/cli.py": "a0ef3255a41578b40befa00c222f3abe2f2196ca92d48195371eb154b854334c",
-    "src/decisionguard/console.py": "ab31f556665f85a5ad5ecfe8180864edd95b5976eb1b59b9b9ea30893c06f4a5",
+    "src/decisionguard/cli.py": "da5f7d855b7afb371ca49e2a31a482db8f77e49f34eb4860cc2de19f8504af86",
+    "src/decisionguard/console.py": "23756f357e0e89847e3f0171103fdcf34315ae9489260751045da6e77b0e2caa",
     "src/decisionguard/containment.py": "1ce87229e82c13c4b81ed29207eb95b6edddf036f0b961340022d92caa479852",
     "src/decisionguard/contracts.py": "928e49d4ce732bca15856bc61920f204a01febedd8803c7350ff427a649dc37b",
     "src/decisionguard/control.py": "2c9f4541bd8be051a8ad2ee6cade01c8b3f267ba31be6da66fb7aba29b21e694",
     "src/decisionguard/engine.py": "2119065d953b162334bb5c9c3369b3ee0b89103e10a025669a292a16a7fd02d6",
+    "src/decisionguard/launcher.py": "92f8f0ada4fdab64877ce96f74ec5e3d189f885efc350ea09f5a2048b8b5b611",
     "src/decisionguard/learning.py": "94442023d8c4a911e837efeef647317521e94f3f3e21b50743eb992e2da4a764",
+    "src/decisionguard/onboarding.py": "ccfc2963f5732430866edb54937b29f3aebb40e17723218c0f733b7eb83e18d7",
     "src/decisionguard/operations.py": "01d86572862717c1a1a8e5ff8c5047ad4fea5487625a84b257b15170cfce0ab3",
     "src/decisionguard/storage.py": "fe1e316a2ab5c8bf9a33b8816d78a39318c5744a3a0d85783748d09fd8a83a2c",
     "src/decisionguard/worker_process.py": "a0cf23e38430b2ff704bce0d2fb3e0e3e612351b8d6437e2a10f0c5c160dc230"
   },
-  "evaluation_process_cpu_seconds": 3.887624,
-  "process_peak_rss_bytes": 35815424,
+  "evaluation_process_cpu_seconds": 3.3987040000000004,
+  "process_peak_rss_bytes": 35831808,
   "gates": {
     "explicit_scope_effects_absent": true,
     "independent_work_preserved": true,
@@ -85,11 +87,11 @@
         "fraction": 1.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.728082999761682,
-        "p95": 2.001707998715574
+        "p50": 1.5100420000635495,
+        "p95": 1.889708999897266
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 1084.9562920011522
+      "elapsed_ms_total": 970.3395809995072
     },
     "rules_only": {
       "cases": 40,
@@ -116,11 +118,11 @@
         "fraction": 1.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.6953750000539003,
-        "p95": 2.0735839989356464
+        "p50": 1.4686670001538005,
+        "p95": 1.7486249998910353
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 1069.6979190015554
+      "elapsed_ms_total": 939.9897900002543
     },
     "selective": {
       "cases": 40,
@@ -147,11 +149,11 @@
         "fraction": 1.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.616499999727239,
-        "p95": 1.9250830009696074
+        "p50": 1.430916000117577,
+        "p95": 1.6449170000214508
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 1066.0547069965105
+      "elapsed_ms_total": 922.3072109996338
     },
     "whole_pause": {
       "cases": 40,
@@ -178,11 +180,11 @@
         "fraction": 0.0
       },
       "submit_dispatch_ms": {
-        "p50": 1.6756250006437767,
-        "p95": 2.2819589994469425
+        "p50": 1.4952500000617874,
+        "p95": 2.045124999995096
       },
       "database_bytes_total": 8069120,
-      "elapsed_ms_total": 1063.4436669952265
+      "elapsed_ms_total": 930.1320820000001
     }
   },
   "limitations": "Synthetic deterministic policy ablations. No external benchmark, LLM, threat-population confidence interval or production guarantee. Timing includes SQLite and excludes fixture setup; full case elapsed includes setup. CPU and peak RSS cover the entire evaluation process (including setup), not isolated per-case workers. Database bytes are storage, not RAM. Submit/dispatch timings cover supplier/probe calls only, not inventory dispatch or model inference.",

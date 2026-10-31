@@ -33,7 +33,7 @@ Phase-five addendum: fixed worker process integration, broker authority and run 
 
 ## Phase-six addendum
 
-Backend owner controls and the optional console are described in [CONSOLE.md](CONSOLE.md) and [ADR 006](ADR-006-owner-controls-and-optional-console.md). CLI use remains primary. This snapshot retains schema 4 and fixes reviewed-hold continuation previews; it does not add general hostile-code isolation or production assurance.
+Backend owner controls and the browser interface are described in [CONSOLE.md](CONSOLE.md) and [ADR 006](ADR-006-owner-controls-and-optional-console.md). The UI is the normal user workflow. This snapshot retains schema 4 and fixes reviewed-hold continuation previews; it does not add general hostile-code isolation or production assurance.
 
 
 ## Phase-seven integrity boundary

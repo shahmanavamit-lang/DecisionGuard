@@ -1,3 +1,5 @@
+> Historical phase-six decision. Its optional-UI rollout is superseded by the required UI startup and guided experience described in CONSOLE.md.
+
 # ADR 006: backend-first owner controls with an optional custom console
 
 Status: accepted for phase six, 29 October 2026.

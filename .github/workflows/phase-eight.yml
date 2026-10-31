@@ -1,9 +1,9 @@
 name: Phase eight offline checks
 on:
   push:
-    paths: ['phase-eight/**', '.github/workflows/phase-eight.yml']
+    paths: ['phase-eight/**', 'start.py', '.github/workflows/phase-eight.yml']
   pull_request:
-    paths: ['phase-eight/**', '.github/workflows/phase-eight.yml']
+    paths: ['phase-eight/**', 'start.py', '.github/workflows/phase-eight.yml']
 permissions:
   contents: read
 jobs:
@@ -20,7 +20,7 @@ jobs:
       - name: Backend, worker, CLI and loopback HTTP checks
         working-directory: phase-eight
         run: python -W error::ResourceWarning -m unittest discover -s tests -v
-      - name: Optional console JavaScript syntax
+      - name: Interface JavaScript syntax
         working-directory: phase-eight
         run: node --check src/decisionguard/web/app.js
       - name: Frozen synthetic evaluation matrix
@@ -32,5 +32,6 @@ jobs:
           python scripts/build_release.py --output local/release.zip
           python -m zipfile -e local/release.zip local/extracted
           cd local/extracted/decisionguard-v1
+          python start.py --help
           python run.py --help
           python -W error::ResourceWarning -m unittest discover -s tests -v

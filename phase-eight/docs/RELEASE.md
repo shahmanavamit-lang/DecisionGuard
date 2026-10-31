@@ -1,4 +1,4 @@
-# DecisionGuard 1.0.0 — bounded offline prototype
+# DecisionGuard 1.1.0 — bounded offline prototype
 
 This release completes the planned eight phases for the supported deterministic local worker. It does not claim semantic AI reasoning, arbitrary hostile-code isolation, universal injection detection, or production readiness. The 160-case synthetic evaluation remains an internal comparison; broad real permissions still allow harmful use.
 
@@ -6,7 +6,7 @@ This release completes the planned eight phases for the supported deterministic 
 
 Requires Python 3.11–3.14 on Linux/macOS, or WSL's Linux filesystem. No runtime pip packages, external services, API keys, Node server or model files. Python/SQLite are supplied by the operator, not vendored. Source and custom UI are MIT; no third-party UI assets. Optional setuptools metadata is inherited for developers, but the supported release path below uses only the standard library and needs no build backend.
 
-From `phase-eight`:
+Normal users start with `python3 start.py` and the browser guide in README.md. The commands below verify the release bundle from `phase-eight`:
 
 ```sh
 python3 scripts/build_release.py --output local/decisionguard-v1.zip
@@ -18,7 +18,7 @@ python3 scripts/worker_walkthrough.py --input README.md --workspace local/demo
 python3 evals/run.py --output local/evaluation
 ```
 
-Use your own UTF-8 input for real work. README.md is simply a public text input for the smoke exercise. The zip uses an explicit reviewed file list, fixed metadata and SHA256SUMS.json; two builds from identical source produce identical bytes. Hashes detect accidental changes, not malicious replacement of both content and hashes. The package includes tests, docs, license and optional UI. Local databases, user inputs and Python installations are excluded.
+Use your own UTF-8 input for real work. README.md is simply a public text input for the smoke exercise. The zip uses an explicit reviewed file list, fixed metadata and SHA256SUMS.json; two builds from identical source produce identical bytes. Hashes detect accidental changes, not malicious replacement of both content and hashes. The package includes tests, docs, license and browser UI. Local databases, user inputs and Python installations are excluded.
 
 ## Health, backup, restore and restart
 
@@ -46,7 +46,7 @@ Do not delete individual events, receipts, inputs or graph edges from a live sto
 
 ```mermaid
 flowchart LR
-    Owner[Local OS owner / CLI or optional console] --> Engine[Task authority and behavior checks]
+    Owner[Local OS owner / CLI or browser interface] --> Engine[Task authority and behavior checks]
     Worker[Fixed worker process] --> Broker[Bounded broker]
     Broker --> Engine
     Engine --> Ledger[SQLite authority, lineage, effects and receipts]
@@ -57,6 +57,6 @@ flowchart LR
 
 ## Release notes and limits
 
-New: reproducible source archive, integrity/owner health check, consistent backup, restore with disabled authority, recovery tests, CI extraction checks and this runbook. Inherited: 135 phase-seven tests, all CLI enforcement/learning/containment/worker controls, optional custom UI and frozen evaluation. Previous phase folders are unchanged. Browser verification is inherited from phase six; no new UI functionality was added.
+New: reproducible source archive, integrity/owner health check, consistent backup, restore with disabled authority, recovery tests, CI extraction checks and this runbook. Inherited: 135 phase-seven tests, all CLI enforcement/learning/containment/worker controls, built-in UI and frozen evaluation. Previous phase folders are unchanged. The current UI adds guided setup and plain-language results; see UI_VERIFICATION.md for the new browser checks.
 
 Release verification includes the full tests, full evaluation, fresh extracted-source execution, recovery drill, source/private-data scan and license review. See PHASE_REPORT.md for recorded results. This is a source release and reproducible local demo, not an installer or hosted deployment. Local reasoning models, external benchmark comparisons, encrypted backup management and service-scale operations require separate future scope.

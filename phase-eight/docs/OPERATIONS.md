@@ -21,4 +21,4 @@ Phase-five addendum: fixed worker process integration, broker authority and run 
 
 ## Current phase-six workflow
 
-Schema 4 from phase five is directly compatible. CLI remains primary; use `overview`, `start-fresh-worker`, and `approve --expected-version` for the new owner controls. The optional `console` command is the only listener entry point and must remain loopback-only. See [CONSOLE.md](CONSOLE.md) for session and lost-response recovery.
+Schema 4 from phase five is directly compatible. The browser interface is the normal startup experience; advanced users can use `overview`, `start-fresh-worker`, and `approve --expected-version` for the new owner controls. The launcher starts the loopback-only interface; the advanced `console` command opens a specific existing store. See [CONSOLE.md](CONSOLE.md) for session and lost-response recovery.

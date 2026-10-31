@@ -63,7 +63,7 @@ class ConsoleTests(Environment):
         for path in ('/api/snapshot','/api/events','/api/graph?task=review','/api/action?id=req'):
             self.assertEqual(self.request(path)[0],401)
         status, html, headers = self.request('/')
-        self.assertEqual(status,200); self.assertIn('Unlock console',html)
+        self.assertEqual(status,200); self.assertIn('Open workspace',html)
         self.assertIn("default-src 'none'",headers['Content-Security-Policy'])
         self.assertEqual(headers['Cache-Control'],'no-store')
         self.login()
@@ -237,3 +237,45 @@ class ConsoleTests(Environment):
         script=self.request('/app.js')[1]
         self.assertNotIn('innerHTML',script);self.assertNotIn('eval(',script)
         self.assertIn('textContent',script)
+
+    def setup_payload(self):
+        return {'task_id':'guided-test','description':'Review my text','content':'Hello world\n',
+                'reason':'Owner reviewed the two visible permissions','confirmed':True}
+
+    def test_guided_setup_requires_session_csrf_and_confirmation(self):
+        data=self.setup_payload()
+        self.assertEqual(self.request('/api/admin/prepare',data)[0],401)
+        self.login()
+        self.assertEqual(self.request('/api/admin/prepare',data,headers={'X-DG-CSRF':''})[0],403)
+        for update in ({'confirmed':False},{'content':''},{'content':'a'*200001},{'task_id':'../bad'}):
+            self.post('prepare',{**data,**update},400)
+        self.assertFalse(any(t['task_id']=='guided-test' for t in service.snapshot(self.engine)['tasks']))
+
+    def test_guided_setup_uses_existing_enforcement_and_cannot_replay(self):
+        self.login();data=self.setup_payload();result=self.post('prepare',data)
+        self.assertEqual(result['state'],'ready')
+        snapshot=service.snapshot(self.engine)
+        task=next(t for t in snapshot['tasks'] if t['task_id']=='guided-test')
+        self.assertEqual(task['scope']['max_actions'],2)
+        self.assertEqual(task['scope']['max_bytes'],len(data['content'].encode())+4096)
+        self.assertEqual(snapshot['counts']['receipts'],0)
+        self.post('prepare',data,400)
+        run={'task_id':'guided-test','expected_version':1,'run_id':'guided-run','reason':'Reviewed',
+             'plan':{'steps':[{'kind':'read','resource_id':'guided-test','resource_version':1},
+                              {'kind':'summarize','resource_id':'guided-test','resource_version':1,'source':0}]}}
+        result=self.post('start',run)
+        self.assertEqual(result['state'],'completed')
+        self.assertEqual(len([s for s in result['steps'] if s.get('receipt')]),2)
+        self.post('start',run,400)
+        outside={**run,'run_id':'outside-guided','plan':{'steps':[{'kind':'read','resource_id':'restricted','resource_version':1}]}}
+        self.assertEqual(self.post('start',outside)['state'],'blocked')
+        self.assertEqual(service.snapshot(self.engine)['counts']['receipts'],2)
+
+    def test_partial_guided_setup_grants_no_worker_access(self):
+        self.login()
+        with patch.object(self.engine,'approve',side_effect=OSError('simulated approval failure')):
+            self.post('prepare',self.setup_payload(),500)
+        view=service.snapshot(self.engine)
+        self.assertFalse(any(g['task_id']=='guided-test' for g in view['grants']))
+        self.assertFalse(any(t['task_id']=='guided-test' for t in view['tasks']))
+        self.post('prepare',self.setup_payload(),400)

@@ -142,6 +142,9 @@ class ConsoleHandler(BaseHTTPRequestHandler):
                     with self.server.auth_lock:
                         self.server.sessions.pop(token, None)
                     return self.reply(200, {'logged_out':True}, cookie=f'{self.server.cookie_name}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0')
+                if path == '/api/admin/prepare':
+                    from .onboarding import prepare
+                    return self.reply(200, prepare(self.server.engine, data))
                 if path.startswith('/api/admin/'):
                     return self.reply(200, service.mutate(self.server.engine, path.removeprefix('/api/admin/'), data))
             else:
@@ -171,12 +174,18 @@ class ConsoleHandler(BaseHTTPRequestHandler):
             self.reply(500, {'error':'unknown_outcome', 'message':'Request failed. Refresh and inspect events and receipts before retrying; an effect may have committed.'})
 
 
-def serve(path, port=8765):
+def serve(path, port=8765, *, open_browser=False):
     require(type(port) is int and 0 <= port <= 65535, 'Invalid port.')
     with ConsoleServer(Engine(path), port) as server:
         print(f'DecisionGuard owner console: {server.origin}', flush=True)
         print(f'One-use local unlock code (valid 10 minutes): {server.login_code}', flush=True)
-        print('No external API key is needed. Keep this terminal private. Ctrl+C stops the console.', flush=True)
+        print('Copy the code into the browser to open your workspace. Keep this terminal open. Ctrl+C stops DecisionGuard.', flush=True)
+        if open_browser:
+            import webbrowser
+            try:
+                webbrowser.open(server.origin)
+            except Exception:
+                print('Open the address above in your browser.', flush=True)
         try:
             server.serve_forever()
         except KeyboardInterrupt:

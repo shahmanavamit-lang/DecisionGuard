@@ -1,3 +1,22 @@
+# UI-first release verification
+
+31 October 2026. The UI is the normal application startup experience. This supersedes earlier optional-interface wording.
+
+Verified in a real browser against a private temporary local store:
+
+- Empty workspace explains purpose, file requirements, permissions and three steps; no records are preloaded.
+- Selected the public project README through the actual file picker. Review displayed the selected filename, byte count, allowed actions and budget.
+- Approval created an unused task; execution required a separate Run approved analysis click.
+- Actual worker execution completed both steps. Word/line/character counts appeared from the saved result; both execution receipts were visible.
+- Reopened saved results after server restart and after page reload without replaying work. The result dialog showed plain-language outcomes and statistics, with raw evidence behind a disclosure.
+- Keyboard Escape dismissed the result dialog. Existing authenticated HTTP regressions cover Host/Origin/CSRF, unknown outcomes, missing storage and stale scope protection.
+- Desktop layout checked at 1366×1000. Mobile checked at 390×844; narrow run tables now become labeled cards so names do not break into unreadable fragments. Technical investigation and advanced controls start collapsed.
+- Temporary test server/tab stopped after verification. Preview screenshots are local artifacts, not private data published to the repository.
+
+New automated coverage verifies empty-store startup without overwriting existing data, authentication/CSRF/explicit confirmation for guided setup, upload bounds, duplicate setup/run rejection, out-of-scope denial, and partial setup without worker authority. Full cumulative suite: 145 passing tests. Full 160-case evaluation passes its declared gates. Browser checks are manual checks through browser automation, separate from CI; not a cross-browser accessibility certification.
+
+## Historical phase-six checks
+
 # Browser verification protocol
 
 The console is optional. This protocol is for maintainers, not a prerequisite for using the backend. Its fixture is explicitly synthetic and lives under `tests/`; the application never seeds it automatically.

@@ -9,7 +9,7 @@ from .storage import Store
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="DecisionGuard phase seven: local durable action control")
+    parser = argparse.ArgumentParser(description="DecisionGuard: advanced local action controls")
     parser.add_argument('--db', type=Path, required=True, help='Local SQLite database file')
     commands = parser.add_subparsers(dest='command', required=True)
     commands.add_parser('init', help='Create an empty database owned by this OS user')
